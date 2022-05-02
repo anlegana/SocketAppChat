@@ -18,6 +18,12 @@ io.on("connection", (socket) => {
 		users.push(user);
 		io.emit("new user", users);
 	});
+
+	socket.on("disconnect", () => {
+		console.log("disconneted user");
+		users = users.filter((u) => u.id !== socket.id);
+		io.emit("new user", users);
+	});
 });
 
 server.listen(3066, () => {
