@@ -10,6 +10,14 @@ const io = new Server(server);
 let users = [];
 io.on("connection", (socket) => {
 	console.log("conneted user");
+	socket.on("join server", (username) => {
+		const user = {
+			username,
+			id: socket.id,
+		};
+		users.push(user);
+		io.emit("new user", users);
+	});
 });
 
 server.listen(3066, () => {
