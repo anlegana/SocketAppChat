@@ -26,6 +26,11 @@ function App() {
 		//	});
 		console.log(allMessages);
 	}
+	function handleKeyPress(e) {
+		if (e.key === "Enter") {
+			connect();
+		}
+	}
 	function connect() {
 		setConnected(true);
 		socket.emit("join chat", username);
@@ -57,8 +62,12 @@ function App() {
 	} else {
 		body = (
 			<div>
-				<input placeholder="username..." onChange={usernameHandleChange} />{" "}
-				<button onClick={connect}>enter server</button>
+				<input
+					placeholder="username..."
+					onChange={usernameHandleChange}
+					onKeyPress={handleKeyPress}
+				/>{" "}
+				<button onClick={connect}>enter chat</button>
 			</div>
 		);
 	}

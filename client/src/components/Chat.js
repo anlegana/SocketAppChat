@@ -11,7 +11,13 @@ function Chat(props) {
 		console.log(message);
 		return (
 			<div className="messageStyle">
-				<div className={message.sender === props.username ? "you" : "other"}>
+				<div
+					className={
+						message.sender === props.username
+							? "youBubble you-bubble-bottom-left "
+							: "otherBubble other-bubble-bottom-left "
+					}
+				>
 					<h3>{message.content}</h3>
 				</div>
 				<h5
@@ -29,6 +35,11 @@ function Chat(props) {
 			props.sendMessage();
 		}
 	}
+
+	function handleClickPress() {
+		props.sendMessage();
+	}
+
 	return (
 		<div className="chat">
 			<div>
@@ -49,7 +60,7 @@ function Chat(props) {
 				onChange={props.messageHandleChange}
 				value={props.message}
 			/>
-			<button>Send</button>
+			<button onClick={handleClickPress}>Send</button>
 		</div>
 	);
 }

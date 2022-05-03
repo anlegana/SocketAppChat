@@ -12,30 +12,77 @@
 	margin: 0 auto;
 }
 
-.you {
-	background-color: green;
-	color: white;
-	display: inline-block;
-	height: 50px;
+.youBubble {
 	position: relative;
-	right: 80px;
+	font-family: sans-serif;
+	font-size: 18px;
+	line-height: 24px;
+	display: inline-block;
+	background: rgb(70, 183, 106);
+	border-radius: 40px;
+	padding: 24px;
+	text-align: center;
+	color: #000;
+	left: 50px;
 }
 
-.other {
-	background-color: red;
-	color: black;
-	display: inline-block;
+.you-bubble-bottom-left:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 14px solid rgb(70, 183, 106);
+	border-right: 12px solid transparent;
+	border-top: 12px solid rgb(70, 183, 106);
+	border-bottom: 20px solid transparent;
+	left: 32px;
+	bottom: -24px;
+}
+.otherBubble {
 	position: relative;
-	left: 80px;
+	font-family: sans-serif;
+	font-size: 18px;
+	line-height: 24px;
+	display: inline-block;
+	background: rgb(204, 104, 104);
+	border-radius: 40px;
+	padding: 24px;
+	text-align: center;
+	color: #000;
+	right: 50px;
+}
+
+.other-bubble-bottom-left:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 14px solid rgb(204, 104, 104);
+	border-right: 12px solid transparent;
+	border-top: 12px solid rgb(204, 104, 104);
+	border-bottom: 20px solid transparent;
+	left: 32px;
+	bottom: -24px;
 }
 
 .senderYou {
-	margin-top: 0;
+	position: relative;
+	left: 80px;
+}
+.senderOther {
 	position: relative;
 	right: 80px;
 }
-.senderOther {
-	margin-top: 0;
-	position: relative;
-	left: 80px;
+
+/*Right triangle, placed bottom right side slightly in*/
+.tri-left {
+	width: 0;
+	height: 0;
+	border-left: 2vh solid transparent;
+	border-right: 2vh solid transparent;
+	border-top: 10vh solid var(--main-dark-color);
+	position: absolute;
+	top: 45%;
+	left: -10%;
+	transform: rotate(60deg);
 }
