@@ -55,7 +55,7 @@ function Chat(props) {
 				</div>
 			</ScrollToBottom>
 			<input
-				placeholder="say somth"
+				placeholder="say something.."
 				onKeyPress={handleKeyPress}
 				onChange={props.messageHandleChange}
 				value={props.message}
