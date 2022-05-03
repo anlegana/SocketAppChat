@@ -7,6 +7,7 @@ function App() {
 	const [username, setUsername] = useState("");
 	const [allUsers, setAllUsers] = useState([]);
 	const [message, setMessage] = useState("");
+	const [allMessages, setAllMessages] = useState([]);
 
 	function usernameHandleChange(e) {
 		setUsername(e.target.value);
@@ -19,7 +20,11 @@ function App() {
 			content: message,
 			sender: username,
 		};
-		socket.on("");
+		socket.emit("new message", payload);
+		socket.on("new message", (messages) => {
+			setAllMessages(messages);
+		});
+		console.log(allMessages);
 	}
 	function connect() {
 		setConnected(true);
@@ -28,14 +33,18 @@ function App() {
 		socket.on("new user", (allUsers) => {
 			setAllUsers(allUsers);
 		});
-		console.log(allUsers);
+		setAllMessages(allMessages);
 	}
 
+	useEffect(() => {
+		setMessage("");
+	}, [allMessages]);
 	let body;
 	if (connected) {
 		body = (
 			<Chat
 				allUsers={allUsers}
+				allMessages={allMessages}
 				yourId={socket.id}
 				message={message}
 				sendMessage={sendMessage}

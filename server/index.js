@@ -16,6 +16,7 @@ const io = new Server(server, {
 	},
 });
 let users = [];
+let messages = [];
 io.on("connection", (socket) => {
 	console.log("conneted user");
 	socket.on("join chat", (username) => {
@@ -26,7 +27,17 @@ io.on("connection", (socket) => {
 		users.push(user);
 		io.emit("new user", users);
 	});
+	socket.on("new message", ({ content, sender }) => {
+		console.log("new message");
+		const payload = {
+			content,
+			sender,
+		};
+		console.log(payload.content);
+		messages.push(payload);
 
+		io.emit("new message", messages);
+	});
 	socket.on("disconnect", () => {
 		console.log("disconneted user");
 		users = users.filter((u) => u.id !== socket.id);
