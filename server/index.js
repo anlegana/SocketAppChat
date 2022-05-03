@@ -26,6 +26,7 @@ io.on("connection", (socket) => {
 		};
 		users.push(user);
 		io.emit("new user", users);
+		io.emit("new message", messages);
 	});
 	socket.on("new message", ({ content, sender }) => {
 		console.log("new message");

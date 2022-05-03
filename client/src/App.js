@@ -21,9 +21,9 @@ function App() {
 			sender: username,
 		};
 		socket.emit("new message", payload);
-		socket.on("new message", (messages) => {
-			setAllMessages(messages);
-		});
+		//socket.on("new message", (messages) => {
+		//	setAllMessages(messages);
+		//	});
 		console.log(allMessages);
 	}
 	function connect() {
@@ -33,7 +33,9 @@ function App() {
 		socket.on("new user", (allUsers) => {
 			setAllUsers(allUsers);
 		});
-		setAllMessages(allMessages);
+		socket.on("new message", (messages) => {
+			setAllMessages(messages);
+		});
 	}
 
 	useEffect(() => {
@@ -49,6 +51,7 @@ function App() {
 				message={message}
 				sendMessage={sendMessage}
 				messageHandleChange={messageHandleChange}
+				username={username}
 			/>
 		);
 	} else {
